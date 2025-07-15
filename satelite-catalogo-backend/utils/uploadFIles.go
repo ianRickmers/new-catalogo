@@ -15,6 +15,9 @@ import (
 // segun el id de la solicitud
 func GuardarArchivos(archivos []*multipart.FileHeader, carpetaID string) ([]string, error) {
 	uploadRoot := os.Getenv("UPLOAD_DIR")
+	if uploadRoot == "" {
+		uploadRoot = "./uploads"
+	}
 	destinoRaiz := filepath.Join(uploadRoot, carpetaID)
 
 	if err := os.MkdirAll(destinoRaiz, os.ModePerm); err != nil {

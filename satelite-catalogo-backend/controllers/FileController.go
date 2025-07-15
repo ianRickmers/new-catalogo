@@ -14,6 +14,9 @@ func ServeArchivo(ctx *gin.Context) {
 	fileParam := ctx.Param("filepath")
 	cleanPath := filepath.Clean(fileParam)
 	uploadRoot := os.Getenv("UPLOAD_DIR")
+	if uploadRoot == "" {
+		uploadRoot = "./uploads"
+	}
 	fullPath := filepath.Join(uploadRoot, cleanPath)
 
 	if !strings.HasPrefix(fullPath, filepath.Clean(uploadRoot)) {
