@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"mime/multipart"
+
 	"os"
 	"path/filepath"
 	"strings"
@@ -29,7 +30,7 @@ func GuardarArchivos(archivos []*multipart.FileHeader, carpetaID string) ([]stri
 		}
 		defer src.Close()
 
-		nombreOriginal := fileHeader.Filename
+		nombreOriginal := filepath.Base(fileHeader.Filename)
 
 		// Extraer prefijo tipo "linea_1" y el resto del nombre
 		var subCarpeta string
@@ -37,19 +38,23 @@ func GuardarArchivos(archivos []*multipart.FileHeader, carpetaID string) ([]stri
 
 		// Detectar si el nombre sigue el patrón "linea_X_..."
 		if strings.HasPrefix(nombreOriginal, "linea_") {
-			// Encontrar primer guion bajo después del prefijo
 			partes := strings.SplitN(nombreOriginal, "_", 3)
 			if len(partes) >= 3 {
-				subCarpeta = fmt.Sprintf("linea_%s", partes[1])  // ej: linea_1
-				nombreFinal = strings.TrimPrefix(partes[2], "_") // el resto sin el prefijo
+				subCarpeta = fmt.Sprintf("linea_%s", partes[1])
+				nombreFinal = strings.TrimPrefix(partes[2], "_")
 			} else {
-				// nombre no válido, ignorar o usar nombre original completo
 				subCarpeta = "sin_linea"
 				nombreFinal = nombreOriginal
 			}
 		} else {
 			subCarpeta = "sin_linea"
 			nombreFinal = nombreOriginal
+		}
+
+		subCarpeta = filepath.Base(subCarpeta)
+		nombreFinal = filepath.Base(nombreFinal)
+		if strings.Contains(nombreFinal, "..") {
+			return nil, fmt.Errorf("invalid file name")
 		}
 
 		// Crear subcarpeta si no existe
@@ -59,6 +64,9 @@ func GuardarArchivos(archivos []*multipart.FileHeader, carpetaID string) ([]stri
 		}
 
 		pathDestino := filepath.Join(destinoSub, nombreFinal)
+		if !strings.HasPrefix(filepath.Clean(pathDestino), filepath.Clean(destinoSub)) {
+			return nil, fmt.Errorf("invalid file path")
+		}
 
 		dst, err := os.Create(pathDestino)
 		if err != nil {

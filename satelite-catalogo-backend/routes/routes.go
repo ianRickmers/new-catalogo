@@ -8,11 +8,13 @@ import (
 )
 
 func RegisterRoutes(router *gin.Engine) {
-	// Expone los archivos estáticos de uploads/
-	router.Static("/archivos", "./uploads")
-
+	// Expone los archivos estáticos de uploads solo para usuarios autenticados
+	archivosGroup := router.Group("/archivos")
+	archivosGroup.Use(middleware.LoadJWTAuth().MiddlewareFunc())
+	archivosGroup.GET("/*filepath", controllers.ServeArchivo)
 	// User routes
 	userGroup := router.Group("/user")
+	userGroup.Use(middleware.LoadJWTAuth().MiddlewareFunc())
 	{
 		userGroup.POST("/", controllers.CreateUser)
 		userGroup.GET("/:id", controllers.GetUserById)
@@ -33,6 +35,7 @@ func RegisterRoutes(router *gin.Engine) {
 
 	// Solicitud routes
 	solicitudGroup := router.Group("/solicitud")
+	solicitudGroup.Use(middleware.LoadJWTAuth().MiddlewareFunc())
 	{
 		solicitudGroup.GET("/filtradas", controllers.GetSolicitudesFiltradasPaginated)
 		solicitudGroup.POST("/", controllers.CreateSolicitud)
@@ -44,6 +47,7 @@ func RegisterRoutes(router *gin.Engine) {
 	}
 	// Centro de Costo routes
 	ccGroup := router.Group("/cc")
+	ccGroup.Use(middleware.LoadJWTAuth().MiddlewareFunc())
 	{
 		ccGroup.POST("/", controllers.CreateCentroCosto)
 		ccGroup.GET("/:id", controllers.GetCentroCostoByID)
@@ -53,6 +57,7 @@ func RegisterRoutes(router *gin.Engine) {
 	}
 
 	products := router.Group("/product")
+	products.Use(middleware.LoadJWTAuth().MiddlewareFunc())
 	{
 		products.POST("/", controllers.CreateProduct)
 		products.GET("/", controllers.GetAllProducts)
