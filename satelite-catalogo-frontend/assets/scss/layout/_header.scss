@@ -1,0 +1,32 @@
+@use '../utils/variables';
+/* ----------- Header ----------- */
+/* Etiqueta del contenido del header*/
+.v-toolbar__content {
+    background-color: variables.$background-color !important;
+    height: 80px !important;
+    padding: 0 24px;
+}
+
+.header-logo{
+    height: 85%;
+    width: auto;
+    cursor: pointer;
+}
+
+/* linea del header */
+.vertical-line {
+        height: 60px;
+        width: 2px;
+        background-color: white;
+        margin: 0 10px;
+}
+
+.header-title{
+    
+    color: white;
+    font-family: variables.$font-bebas;
+    font-size: xx-large;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}

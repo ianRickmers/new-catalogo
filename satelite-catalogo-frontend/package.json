@@ -1,0 +1,25 @@
+{
+  "name": "nuxt3-template",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "nuxi preview"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@pinia/nuxt": "^0.11.0",
+    "@sidebase/nuxt-session": "^0.2.8",
+    "axios": "^1.9.0",
+    "nuxt": "^3.9.0",
+    "nuxt-session": "^1.0.3",
+    "pinia": "^3.0.2",
+    "sass": "^1.87.0",
+    "vite-plugin-vuetify": "^2.1.1",
+    "vuetify": "^3.8.4"
+  },
+  "devDependencies": {
+    "sass": "^1.89.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,113 @@
+// Variables
+$color-primario: #00A499;
+$color-secundario: #EA7600;
+$color-accento: #394049;
+
+.main-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.content-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #f4f1f1;
+    padding: 8px;
+    background: #f4f1f1;
+    width: 100%;
+    max-width: 800px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.divider {
+    height: 24px;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 8px;
+}
+
+.botones {
+    display: flex;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.centrado {
+    justify-content: center;
+}
+
+.boton-outlined {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: $color-primario;
+    border: 1px solid $color-primario;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $color-primario;
+        color: white;
+    }
+}
+
+.tabla-planillas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.table-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid $color-primario;
+}
+
+.tabla-planillas th,
+.tabla-planillas td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.row-even {
+    background-color: #ffffff;
+}
+
+.row-odd {
+    background-color: #f8f9fa;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,39 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Nuxt build outputs
+.nuxt/
+.output/
+dist/
+*.nuxt/
+
+# Nuxt dev server
+*.local
+
+# Environment files
+.env
+.env.* 
+
+# VSCode settings (optional, if you don't want to share IDE configs)
+.vscode/
+
+# Logs
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional: lock files for reproducible builds (only if you prefer ignoring them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+

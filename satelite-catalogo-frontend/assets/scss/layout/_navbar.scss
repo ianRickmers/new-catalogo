@@ -1,0 +1,12 @@
+#navbar {
+    .navbar-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; // centra verticalmente
+
+        margin-top: 2rem; // ajusta esto si quieres más espacio arriba
+        gap: 1rem;        // espacio entre botones
+    }
+}
+

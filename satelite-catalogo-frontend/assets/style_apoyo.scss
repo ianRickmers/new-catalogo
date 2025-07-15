@@ -1,0 +1,1590 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+
+// Colores
+$color-primario: #00A499;
+$color-secundario: #EA7600;
+$color-accento: #394049; 
+
+// Fuentes
+$fuente-primaria: 'Bebas Neue', sans-serif;
+$fuente-secundaria: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Tamaños de fuente
+$fuente-tam-base: 16px;
+$fuente-tam-grande: 24px;
+$fuente-tam-pequeno: 12px;
+
+// Espaciados
+$espacio-base: 8px;
+$espacio-grande: 16px;
+$espacio-pequeno: 4px;
+
+body {
+    font-family: $fuente-primaria;
+    font-size: $fuente-tam-base;
+    color: $color-primario;
+    background-color: #f8f9fa; // Un color de fondo suave
+    margin: 0;
+  }
+  
+  h1, h2, h3 {
+    font-family: $fuente-secundaria;
+  }
+  
+  h1 {
+    font-size: $fuente-tam-grande;
+    color: $color-accento;
+  }
+  
+  p {
+    margin-bottom: $espacio-base;
+  }
+  
+  a {
+    color: $color-primario;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+      color: color-mix(in srgb, var(--color-primario) 80%, black);
+    }
+  }
+  
+  // Ejemplo de uso de un mixin para botones
+  @mixin boton-basico {
+    display: inline-block;
+    padding: $espacio-pequeno $espacio-base;
+    margin: $espacio-pequeno;
+    border: none;
+    border-radius: $espacio-pequeno;
+    text-align: center;
+    background-color: $color-primario;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: $fuente-primaria;
+  
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-primario) 80%, black);
+    }
+  }
+  
+  .boton {
+    @include boton-basico;
+
+    &:disabled {
+      background-color: #CCCCCC;
+      color: #666666;
+      cursor: not-allowed;
+    }
+  }
+
+  .boton-accento {
+    background-color: $color-accento;
+    @include boton-basico;
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-accento) 80%, black);
+    }
+  }
+
+  .boton-accento:disabled{
+    background-color: #CCCCCC;
+    color: #666666;
+    cursor: not-allowed;
+  }
+
+  .boton-xlarge{
+    font-size: x-large;
+    align-items: center;
+    margin-right: -5%;
+    @include boton-basico;
+
+    &:disabled{
+      background-color: #CCCCCC;
+      color: #666666;
+      cursor: not-allowed;
+    }
+  }
+/*
+  .boton-xlarge:disabled{
+    background-color: #CCCCCC;
+    color: #666666;
+    cursor: not-allowed;
+  }*/
+
+  .boton-large{
+    font-size: large;
+    align-items: center;
+    @include boton-basico;
+
+    &:disabled{
+      background-color: #CCCCCC;
+      color: #666666;
+      cursor: not-allowed;
+      font-family: $fuente-primaria;
+    }
+  }
+
+  /*
+  .boton-large:disabled{
+    background-color: #CCCCCC;
+    color: #666666;
+    cursor: not-allowed;
+    font-family: $fuente-primaria;
+  }*/
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    position: relative;
+    background-color: $color-primario;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 8vh; // esto genera la desconfiguración del navbar cuando se haze zoom in-out
+  } 
+  
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+  }
+
+  .header-logo {
+    height: 110%;
+    width: auto;
+    cursor: pointer;
+  }
+
+  .header-icon {
+    height: 80%;
+    position: absolute;
+    right: 1%;
+  }
+
+  .logo-account{
+    width: auto;
+    height: 80%;
+    cursor: pointer;
+  }
+  
+
+  
+  .sidebar ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .sidebar li a {
+    display: block;
+    padding: 10px;
+    color: $color-accento;
+    text-decoration: none;
+    font-size: x-large;
+  }
+  
+  .sidebar li a.active {
+    color: $color-primario;
+  }
+  .sidebar a:hover{
+    color: black;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container-conta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    //min-height: 100vh;
+  }
+
+  .title-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2vw;
+    text-align: center;
+  }
+  
+  .titulo{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-accento;
+    font-weight: 400;
+  }
+
+  .header{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-primario;
+    margin-top: 8px;
+  }
+
+  .meses{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .meses p{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-accento;
+    padding: 20px;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+  /*
+  .meses p:hover{
+    color: $color-primario;
+  }*/
+
+  .content {
+    padding: 20px;
+    width: 100%;
+  }
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  select:focus {
+    outline: 1px solid $color-primario;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .fila{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .texto-secundario{
+    font-family: $fuente-secundaria;
+    font-size: medium;
+    color: $color-accento;
+  }
+
+  .card-planilla{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.267);
+    max-width: 200px;
+    margin: 20px 20px;
+    padding: 20px;
+    color: $color-accento;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+  /*
+  .card-planilla:hover{
+    color: $color-primario;
+  }
+
+  .card-planilla:hover p{
+    color: $color-primario;
+  }*/
+
+  .card-planilla p{
+    color: $color-accento;
+    font-family: $fuente-primaria;
+    font-size: medium;
+    padding: 2px;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+
+  .header-planillas{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  /********* Inicio estilos de CardSolicitud */
+
+  .container-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar las tarjetas horizontalmente */
+    width: 100%;
+  }
+
+  .card {
+    border: 1.8px solid #394049; /* Borde con el color de acento */
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 2%; /* Agregar un espacio arriba */
+    /* Ajustar el ancho de la tarjeta */
+    //min-width: 40%; /* La tarjeta ocupará el 60% del ancho disponible */
+    min-width: 40%;
+    margin-left: auto; /* Margen automático a la izquierda */
+    margin-right: auto; /* Margen automático a la derecha */
+  }
+  /* Estilos para pantallas más pequeñas */
+    @media (max-width: 768px) {
+      .container-card {
+        min-width: 30%; /* Cambia el ancho mínimo al 60% para pantallas más pequeñas */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container-card {
+        min-width: 100%; /* Cambia el ancho mínimo al 80% para pantallas aún más pequeñas */
+      }
+    }
+
+    @media (max-width: 320px) {
+      .container-card {
+        min-width: 100%; /* La tarjeta ocupará el 100% del ancho disponible en pantallas muy pequeñas */
+      }
+    }
+  .contenido {
+    display: flex; /* Utilizar flexbox */
+    justify-content: space-between; /* Distribuir el contenido uniformemente */
+    margin-bottom: 2%;
+    
+  }
+  
+  .botones {
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;  // CAMBIO
+  }
+  
+  .centrado {
+    justify-content: center;
+  }
+  .cuadro {
+    background-color: #ffffff; /* Color de fondo del cuadro */
+    border-radius: 4px; /* Redondez de las esquinas del cuadro */
+    width: 40%;
+    border: 2px solid #00A499;
+    padding: 0; /* Elimina el margen interno */
+  }
+  
+  .texto-principal {
+    display: flex; /* Utilizar flexbox */
+    align-items: center; /* Alinear los elementos verticalmente */
+    color: #394049;
+    width: 80%;
+    margin-left: 4%;
+  }
+  
+  .dias-restantes {
+    margin-left: 20px; /* Margen izquierdo para separar los elementos */
+    font-size: 50px;
+  }
+  
+  .boton {
+    flex-grow: 1;
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #00A499;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 75%;
+
+    &:hover {
+      background-color: #394049;
+    }
+  }
+  
+  /*
+  .boton:hover {
+    background-color: #394049;
+  }*/
+
+  .boton-outlined {
+    flex-grow: 1;
+    padding: 0px;
+    margin: 0 5px;
+    background-color: transparent;
+    color: #00A499;
+    border: 1px solid #00A499;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    font-size:small;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background-color: #00A499;
+      color: white;
+    }
+
+    &:disabled {
+      background-color: white; 
+      border: 1px solid #8d9493;
+      color: #8d9493;
+    }
+  }
+  
+  /*
+  .boton-outlined:hover {
+    background-color: #00A499;
+    color: white;
+  }
+
+  .boton-outlined:disabled {
+    background-color: white; 
+    border: 1px solid #8d9493;
+    color: #8d9493;
+  }*/
+
+  
+  .card-accent {
+    border-color: #394049; /* Borde con el color de acento */
+  }
+  
+  .card-header {
+    margin-bottom: 20px; /* Espacio entre el encabezado y el cuerpo */
+  }
+  
+  .accent-text {
+    color: #394049; /* Color de texto con el color de acento */
+  }
+
+  .accent-text-right {
+    color: #394049; /* Color de texto con el color de acento */
+    text-align: right;
+  }
+  
+  .card-header span {
+    margin-right: 20px; /* Margen derecho para los elementos span dentro del encabezado */
+  }
+  
+  .card-footer {
+    margin-top: 16px;
+  }
+
+  .boton-text {
+  margin-left: 8px; /* Ajusta el margen izquierdo del texto */
+    }
+
+    .memorandum-pendiente {
+      background-color: #00A499; /* Cambia el color del botón cuando el estado sea Pendiente de memorandum */
+    }
+    
+    .card-accent-red {
+      border: 2px solid #a40000; /* Cambiar el color del borde */
+    }
+    
+    .red-text{
+      color: #a40000;
+    }
+    
+      .boton.boton-disabled {
+        background-color: #8d9493; /* Cambia el color de fondo de los botones deshabilitados */
+        cursor: not-allowed; /* Cambia el cursor cuando el botón está deshabilitado */
+      }
+
+      .boton.boton-mem-revisado {
+        background-color: #394049; /* Cambia el color de fondo de los botones deshabilitados */
+        cursor: not-allowed; /* Cambia el cursor cuando el botón está deshabilitado */
+      }
+
+      .boton.boton-mem-correccion {
+        background-color: #8d9493; /* Cambia el color de fondo de los botones deshabilitados */
+        cursor: not-allowed; /* Cambia el cursor cuando el botón está deshabilitado */
+      }
+  /***** FIN ESTILOS CARDSOLICITUD*/
+  /* Estilos para el spinner */
+
+  
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #00A499;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+  /**** INICIO ESTILOS BUSCADOR */
+  .search-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 1%;
+  }
+  
+  .search-bar {
+    //position: relative; /* Para que los elementos internos se posicionen de forma relativa */
+    display: flex;
+    align-items: center;
+    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #f4f1f1; /* Borde sólido */
+    padding: 8px;
+    background: #f4f1f1; /* Color de fondo gris */
+    color: hsl(0, 0%, 33%); /* Color del texto gris */
+    width: 40%; /* Ancho del contenedor */
+    margin-left: auto; /* Margen automático a la izquierda */
+    margin-right: auto; /* Margen automático a la derecha */
+    position: relative;
+  }
+
+  select:focus {
+    outline: 1px solid $color-primario;
+  }
+  .divider {
+    height: 100%; /* Ajusta la altura según sea necesario */
+    width: 1px;
+    background-color: #ccc; /* Color de la línea */
+    margin: 10 8px; /* Espacio a ambos lados de la línea */
+  }
+
+  .buscador-contabilidad {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    width: 100%;
+  }
+
+  .search-input {
+    appearance: none;
+    flex-grow: 1; /* El input ocupará todo el espacio disponible */
+    padding: 8px;
+    //margin-right: 20px;
+    border: none;
+    // font-size: 16px;
+    outline: none; /* Quita el contorno al hacer clic */
+    // color: #555; /* Color del texto gris */
+    // background-color: #f4f1f1; /* Color de fondo gris */
+    font-family: inherit;
+    font-size: inherit;
+    // color: hsl(0, 55%, 31%);
+    background-color: inherit;
+    margin: 0 auto;
+  }
+  
+  .search-select {
+    // margin-left: 8px; /* Ajusta el margen si es necesario */
+    padding: 8px;
+    border: none;
+    outline: none;
+    // background: #f4f1f1; /* Mantiene el mismo fondo que el input */
+    // color: #555;
+    margin: 0 auto;
+    font-family: inherit;
+    font-size: inherit;
+    color: hsl( 0, 0%, 45%);
+    background-color: inherit;
+  }
+
+  .search-icon-admin {
+    margin-right: 10px;
+  }
+
+  .search-icon-solicitudes {
+    position: absolute; /* Posición absoluta */
+    right: 185px; /* Ajusta este valor según sea necesario para alinearlo */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Centrado verticalmente */
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+  }
+
+  .p-toast-icon-close.p-link {
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  /*
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }*/
+
+  /* INICIO ESTILOS MODAL */
+  .modal-text {
+    font-size: 18px; /* Tamaño de fuente más grande */
+    font-family: Arial, sans-serif; /* Otra fuente */
+    color: #394049; /* Color negro */
+    text-align: center;
+    font-weight: normal;
+    align-items: center;
+}
+.modal-text2 {
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-family: Arial, sans-serif; /* Otra fuente */
+  color: #394049; /* Color negro */
+  text-align: center;
+  font-weight: normal;
+}
+  .action-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .action-modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .close-icon {
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #394049;
+  }
+  
+  .action-modal-buttons {
+    display: flex;
+    justify-content: center; /* Distribuye los botones horizontalmente */
+    margin-top: 20px;
+}
+.action-modal-buttons .disabled-button {
+  background-color: #8d9493;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #8d9493;
+  }
+}
+/*
+.action-modal-buttons .disabled-button:hover {
+  background-color: #8d9493;
+}*/
+
+.action-modal-buttons button {
+    background-color: #00A499;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 50px; /* Espacio entre botones */
+
+    &:hover {
+      background-color: #00766c;
+    }
+
+    &:last-child {
+      margin-right: 0; /* Elimina el margen derecho del último botón */
+    }
+}
+/*
+.action-modal-buttons button:last-child {
+    margin-right: 0;
+}
+.action-modal-buttons button:hover {
+    background-color: #00766c;
+}*/
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+.div-text {
+width: 100%;
+align-items: center;
+}
+.div-content {
+width: 100%;
+}
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinear el texto y el icono al espacio entre ellos */
+  width: 100%; /* Ajustar el ancho del contenedor al 100% */
+}
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px; /* Ajusta según sea necesario */
+  border: 2px solid #00A499;
+  border-radius: 10px;
+  padding: 1%;
+  width: 30%;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid #00746e;
+    color: #00746e;
+  }
+}
+/*
+.icon-container:hover {
+  border: 2px solid #00746e;
+  color: #00746e;
+}*/
+
+.solicitudes-text{
+  color: #394049;
+  margin-top: 2%;
+  margin-left: 15%;
+  font-size: 40px;
+}
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    min-height: 100vh;
+  }
+  
+  .titulo{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-accento;
+  }
+
+  .header{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-primario;
+    margin-top: 8px;
+  }
+
+  .meses{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .meses p{
+    font-family: $fuente-primaria;
+    font-size: xx-large;
+    color: $color-accento;
+    padding: 20px;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+  /*
+  .meses p:hover{
+    color: $color-primario;
+  }*/
+
+  .content {
+    padding: 20px;
+  }
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  select:focus {
+    outline: 1px solid $color-primario;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .fila{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .texto-secundario{
+    font-family: $fuente-secundaria;
+    font-size: medium;
+    color: $color-accento;
+  }
+
+  .card-planilla{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.267);
+    max-width: 200px;
+    margin: 20px 20px;
+    padding: 20px;
+    color: $color-accento;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+  /*
+  .card-planilla:hover{
+    color: $color-primario;
+  }
+
+  .card-planilla:hover p{
+    color: $color-primario;
+  }*/
+
+  .card-planilla p{
+    color: $color-accento;
+    font-family: $fuente-primaria;
+    font-size: medium;
+    padding: 2px;
+
+    &:hover{
+      color: $color-primario;
+    }
+  }
+
+  .tabla-planillas{
+    border-top: 2px solid #81ddd7;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: $fuente-secundaria;
+    text-align: left;
+  }
+
+  .tabla-planillas th, .tabla-planillas td {
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .table-header {
+    border-bottom: 2px solid #00A499;
+    padding: 8px 0 6px 0;
+  }
+
+/**** INICIO ESTILOS LOGIN */
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  //border: 1.8px solid #ff4000;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-top: 2%; /* Agregar un espacio arriba */
+  /* Ajustar el ancho de la tarjeta */
+  align-items: center; // Centra horizontalmente los elementos
+  justify-content: center; // Centra verticalmente los elementos
+  width: 80%; /* La tarjeta ocupará el 60% del ancho disponible */
+  margin-left: auto; /* Margen automático a la izquierda */
+  margin-right: auto; /* Margen automático a la derecha */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.container-totalrecords {
+  display: flex;
+  align-items: center;
+  padding-top: 1%;
+  padding-left: 31%;
+}
+
+.button-login {
+  background-color: $color-secundario;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 30px;
+  font-family: $fuente-primaria;
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: none;
+  }
+}
+/*
+.button-login:hover {
+  background-color: none;
+}*/
+
+.accent-text-login {
+  color: #394049; /* Color de texto con el color de acento */
+  font-size: $fuente-tam-grande;
+  margin-bottom: 5px;
+}
+.input-form{
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid $color-accento;
+  font-size: 16px;
+  border-radius: 8px;
+  color: $color-accento;
+  width: 100%;
+  background-color: #f4f1f1;
+}
+
+.input-login {
+  box-sizing: border-box;
+  padding: 10px;
+  padding-left: 13%;
+  border: 1px solid $color-accento;
+  font-size: 16px;
+  border-radius: 8px;
+  color: $color-accento;
+  width: 100%;
+  //margin-bottom: 20px;
+  background-color: #f4f1f1;
+  //margin-bottom: 3%;
+}
+
+.input-login:focus{
+  outline: 1px solid $color-primario;
+}
+
+.container-input-login {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-top: 2%; /* Agregar un espacio arriba */
+  /* Ajustar el ancho de la tarjeta */
+  align-items: start; // Centra horizontalmente los elementos
+  justify-content: center; // Centra verticalmente los elementos
+  width: 400px; /* La tarjeta ocupará el 60% del ancho disponible */
+  margin-left: auto; /* Margen automático a la izquierda */
+  margin-right: auto; /* Margen automático a la derecha */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%; // Asegúrate de que el contenedor tome todo el ancho necesario
+  margin-bottom: 20px;
+
+  .password-input {
+    margin-bottom: 0px;
+    padding-right: 50px;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 10px; // Posición desde la derecha del contenedor
+    top: 50%; // Centrado verticalmente
+    transform: translateY(-50%); // Ajuste fino del centrado vertical
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #707070; // Color del texto del botón, puedes ajustarlo
+  }
+}
+/**** FIN ESTILOS LOGIN */
+
+/**** INICIO ESTILOS ADMINISTRACION DE USUARIOS */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 86vh; /* Asegura que el contenedor ocupe al menos toda la altura de la pantalla */
+}
+
+.content-container {
+  flex-grow: 1; /* Permite que el contenido crezca para llenar el espacio disponible */
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container-users {
+  display: flex;
+  justify-content: center;
+}
+
+.search-container-conta {
+  display: flex;
+  justify-content: center;
+  width: 35vw;
+}
+
+.search-bar-users {
+  position: relative; /* Para que los elementos internos se posicionen de forma relativa */
+  display: flex;
+  align-items: center;
+  border-radius: 10px; /* Bordes redondeados */
+  border: 1px solid #f4f1f1; /* Borde sólido */
+  padding: 8px;
+  background: #f4f1f1; /* Color de fondo gris */
+  // color: hsl(0, 0%, 33%); /* Color del texto gris */
+  width: 100%; /* Ancho del contenedor */
+  margin-left: auto; /* Margen automático a la izquierda */
+  // margin-right: auto; /* Margen automático a la derecha */
+  margin-right: 10px;
+  font-family: $fuente-secundaria;
+  font-size: 14px;
+}
+
+.card-user{
+  flex-grow: 1;
+  padding: 16px 30px 16px 30px;
+  border-radius: 16px;
+  border: 2px solid $color-accento;
+  align-self: center;
+  justify-self: center;
+  background-color: #fff;
+  color: $color-accento;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  //display: flex;
+  width: 100%;
+}
+
+.role-tag {
+  font-family: $fuente-secundaria;
+  background-color: $color-primario;
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 10px; /* Bordes redondeados ligeramente */
+  padding: 4px 10px 4px 10px; /* Padding para hacer el botón más grande */
+  text-align: center; /* Alinea el texto al centro */
+  font-size: 12px; /* Tamaño de texto adecuado */
+  font-weight: bold; /* Texto en negrita */
+  width: 126px;
+  margin-bottom: 2px;
+}
+
+.button-user {
+  padding: 0;
+  margin: 0;
+  background-color: #f8f9fa;
+  color: $color-accento;
+  cursor: pointer;
+  font-size: 1.5rem;
+  height: 30px;
+  width: 30px;
+  
+  &:hover {
+    background-color: #f8f9fa;
+    color: $color-primario;
+  }
+}
+/*
+.button-user:hover {
+  background-color: #f8f9fa;
+  color: $color-primario;
+}*/
+
+.accent-text-usercard {
+  font-family: $fuente-secundaria;
+  color: #394049; /* Color de texto con el color de acento */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.texto-secundario-usercard{
+  font-family: $fuente-secundaria;
+  font-size: $fuente-tam-pequeno;
+  color: $color-accento;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.tab {
+  color: $color-accento;
+  font-size: $fuente-tam-grande;
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .tab-text {
+    border-bottom: 2px solid transparent;
+
+    &.active {
+      border-bottom-color: #00A499;
+    }
+  }
+}
+
+.tab.active .tab-text {
+  border-bottom-color: #00A499;
+}
+
+.sub-tab {
+  color: $color-accento;
+  font-size: $fuente-tam-grande;
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .tab-text {
+    border-bottom: 2px solid transparent;
+
+    &.active {
+      border-bottom-color: #00A499;
+    }
+  }
+}
+
+.sub-tab.active .tab-text {
+  border-bottom-color: #00A499;
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: $color-primario;
+  gap: 30px;
+}
+
+.top-tab {
+  color: $color-accento;
+  font-size: $fuente-tam-grande;
+  flex-grow: 0;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  color: #fff;
+
+  .tab-text {
+    border-bottom: 2px solid transparent; // Borde transparente para pestañas no activas
+
+    &.active {
+      border-bottom-color: #fff;
+    }
+  }
+}
+
+.top-tab.active .tab-text {
+  border-bottom-color: #fff;
+}
+
+//*** FORMULARIO USUARIO */
+
+.card-fomulario{
+  //align-items: center; // Centra horizontalmente los elementos
+  //justify-content: center; // Centra verticalmente los elementos
+  //width: 80%; /* La tarjeta ocupará el 60% del ancho disponible */
+  margin-left: auto; /* Margen automático a la izquierda */
+  margin-right: auto; /* Margen automático a la derecha */
+  margin-top: auto;
+  margin-bottom: auto;
+  
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.267);
+  padding: 20px;
+  color: $color-accento;
+  //align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.warning-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  //width: 100%;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.warning-text{
+  color: #ad1d2b;
+  font-family: $fuente-secundaria;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.input-form{
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid $color-accento;
+  font-size: 16px;
+  border-radius: 8px;
+  color: $color-accento;
+  width: 100%;
+  background-color: #f4f1f1;
+}
+
+.input-form:focus{
+  outline: 1px solid $color-primario;
+}
+
+//*** FIN FORMULARIO USUARIO */
+
+//*** INICIO ESTILOS PAGINACION */
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-item {
+  margin: 0 2px;
+}
+
+.page-item-icon {
+  margin: 0 2px;
+}
+
+.page-link {
+  font-family: $fuente-secundaria;
+}
+
+.page-item.disabled .page-link, 
+.page-item-icon.disabled .page-link-icon {
+  color: $color-accento;
+  pointer-events: none;
+}
+
+.page-link, .page-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //padding: 0px;
+  border-radius: 12px;
+  color: $color-accento;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    background-color: $color-primario;
+    color: white;
+  }
+}
+
+.page-link-icon {
+  color: $color-primario;
+  width: 32px;
+  height: 32px;
+}
+
+/*
+.page-link:hover, .page-link-icon:hover {
+  background-color: $color-primario;
+  color: white;
+}*/
+
+.page-item.active .page-link {
+  background-color: $color-primario;
+  color: white;
+}
+
+.chevron-pagination {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.pagination-container {
+  margin-top: auto;
+}
+
+//*** FIN ESTILOS PAGINACION */
+
+/**** FIN ESTILOS ADMINISTRACION DE USUARIOS */
+
+/**** ESTILOS NAVBAR */
+
+.dropdown-menu-navbar {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: $color-primario;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 8px;
+  border: 1px solid $color-accento;
+}
+
+.dropdown-menu-navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: $fuente-tam-grande;
+}
+
+.dropdown-menu-navbar li {
+  padding: 10px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #00766c;
+  }
+}
+/*
+.dropdown-menu-navbar li:hover {
+  background-color: #00766c;
+}*/
+
+/**** FIN ESTILOS NAVBAR */
+
+/**** ESTILOS PERFIL */
+
+.card-perfil{
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.267);
+  min-width: 600px;
+  max-width: 1200px;
+  padding: 20px;
+  color: $color-accento;
+  text-align: center;
+  align-items: start;
+  justify-content: start;
+  justify-items: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-perfil p{
+  color: $color-accento;
+  font-family: $fuente-primaria;
+  font-size: medium;
+  padding: 2px;
+}
+
+.card-perfil-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 6px;
+}
+
+.card-perfil-item-title{
+  font-family: $fuente-secundaria;
+  font-size: $fuente-tam-grande;
+  color: $color-accento;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.card-perfil-item-value{
+  align-items: end;
+  justify-content: end;
+  justify-items: end;
+  font-family: $fuente-secundaria;
+  font-size: $fuente-tam-grande;
+  color: $color-primario;
+  padding: 6px;
+}
+
+/**** FIN ESTILOS PERFIL */
+
+.contenedor-modal {
+  width: fit-content;
+}
+
+.form-select {
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid $color-accento;
+  font-size: 16px;
+  border-radius: 8px;
+  color: $color-accento;
+  width: 100%;
+  background-color: #f4f1f1;
+}
+
+.factura-list-container {
+  max-height: 200px;
+  min-width: 400px;
+  overflow-y: scroll;
+  border: 1px solid #00A499;
+  border-radius: 5px;
+  justify-content: start;
+  scrollbar-color: #00A499 #f1f1f1;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    visibility: visible;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #00A499;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+}
+
+.factura-list {
+  justify-content: start;
+  list-style: none;
+  font-size: 1.2em;
+  font-family: $fuente-secundaria;
+  text-align: left;
+  padding-left: 0;
+  color: $color-accento;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}
+/*
+.factura-list:hover {
+  background-color: #f1f1f1;
+}*/
+
+.list-group-factura {
+  padding: 6px;
+  margin: 0px;
+}
+
+.factura-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+/////////////////
+
+.fuente-primaria {
+  font-family: $fuente-primaria;
+}
+
+.fuente-secundaria {
+  font-family: $fuente-secundaria;
+}
+
+
+.alert-text {
+  font-family: $fuente-secundaria;
+  font-size: 12px;
+  color: red;
+}
+
+.texto-comun{
+  font-family: $fuente-secundaria;
+  font-size: $fuente-tam-pequeno;
+  color: $color-accento;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}

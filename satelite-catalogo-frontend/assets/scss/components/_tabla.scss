@@ -1,0 +1,21 @@
+@use '../utils/variables';
+
+.tabla-planillas {
+    border-top: 2px solid #81ddd7;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: variables.$fuente-secundaria;
+    text-align: left;
+}
+
+.tabla-planillas th,
+.tabla-planillas td {
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-header {
+    border-bottom: 2px solid #00A499;
+    padding: 8px 0 6px 0;
+}

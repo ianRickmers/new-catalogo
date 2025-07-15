@@ -1,0 +1,20 @@
+.content-container {
+    flex-grow: 1;
+    /* Permite que el contenido crezca para llenar el espacio disponible */
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container-users {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container {
+  margin-top: auto;
+}
+
+.contenedor-solicitudes {
+    margin:30px auto;
+
+}

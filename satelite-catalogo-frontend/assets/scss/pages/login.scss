@@ -1,0 +1,59 @@
+@use '../utils/variables';
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    background-color: white;
+}
+
+.login-input{
+    margin-bottom: 10px;
+    background-color: white; 
+    .v-field__input {
+        background-color: white;
+
+      }
+    .v-field {
+        border-radius: 12px;
+        background-color: white !important;
+        border: 1px solid #000 !important;
+    }
+    // overlay por defecto que da un color gris
+    .v-field__overlay {
+        background-color: transparent !important; // <- esto quita el gris
+        
+
+      }
+  }
+ 
+.login-form-title{
+    font-size: 2.25rem;
+    color: #394049;
+    margin: 30px;
+    font-family: variables.$font-bebas;
+    text-align: center;
+    font-weight: 400;
+}
+
+.login-btn{
+    background-color: variables.$background-color !important;
+    color: white !important;
+    border-radius: 12px !important;
+    font-size: 1.45rem !important;
+    font-family: variables.$font-bebas;
+    text-align: center;
+    font-weight: 400 !important;
+    padding: 16px 24px !important;   
+    width: 100% !important;
+
+    &:hover {
+        background-color: variables.$background-color  !important;
+    }
+}
+
+.v-sheet-login{
+    width: 30%;
+}
+

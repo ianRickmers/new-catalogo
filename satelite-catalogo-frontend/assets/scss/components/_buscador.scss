@@ -1,0 +1,40 @@
+.search-bar {
+    //position: relative; /* Para que los elementos internos se posicionen de forma relativa */
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    /* Bordes redondeados */
+    border: 1px solid #f4f1f1;
+    /* Borde sólido */
+    padding: 8px;
+    background: #f4f1f1;
+    /* Color de fondo gris */
+    color: hsl(0, 0%, 33%);
+    /* Color del texto gris */
+    width: 40%;
+    /* Ancho del contenedor */
+    margin-left: auto;
+    /* Margen automático a la izquierda */
+    margin-right: auto;
+    /* Margen automático a la derecha */
+    position: relative;
+}
+
+.search-input {
+    appearance: none;
+    flex-grow: 1;
+    /* El input ocupará todo el espacio disponible */
+    padding: 8px;
+    //margin-right: 20px;
+    border: none;
+    // font-size: 16px;
+    outline: none;
+    /* Quita el contorno al hacer clic */
+    // color: #555; /* Color del texto gris */
+    // background-color: #f4f1f1; /* Color de fondo gris */
+    font-family: inherit;
+    font-size: inherit;
+    // color: hsl(0, 55%, 31%);
+    background-color: inherit;
+    margin: 0 auto;
+}
