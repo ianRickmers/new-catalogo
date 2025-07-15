@@ -27,6 +27,10 @@ export default defineNuxtConfig({
     '@/assets/scss/main.scss',
   ],
 
+  plugins: [
+    '~/plugins/form-data',
+  ],
+
   build: {
     transpile: ['vuetify'],
   },
