@@ -16,10 +16,8 @@ import (
 /*
 Se establecen los nombres de la colección que se traeran desde la base de datos
 */
-const (
-	userCollection = "User"
-)
 
+// CreateUserRequest represents the payload to create a new user.
 type CreateUserRequest struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -27,6 +25,16 @@ type CreateUserRequest struct {
 	CC       []int  `json:"cc"`
 }
 
+// CreateUser godoc
+// @Summary      Register new user
+// @Description  Creates a new user after validating credentials
+// @Tags         users
+// @Accept       json
+// @Produce      json
+// @Param        payload  body      CreateUserRequest  true  "User info"
+// @Success      201      {object} models.User
+// @Failure      400      {object} map[string]interface{}
+// @Router       /user/ [post]
 func CreateUser(ctx *gin.Context) {
 	var req CreateUserRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {

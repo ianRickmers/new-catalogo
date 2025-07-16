@@ -1,7 +1,15 @@
-// main.go
+// Package main bootstraps the Gin server, loads environment variables and
+// establishes the database connection.
+//
+// @title Catalogo API
+// @version 1.0
+// @description This is the API documentation for the Catalogo service.
+// @host localhost:8080
+// @BasePath /
 package main
 
 import (
+	docs "catalogo-backend/docs"
 	"context"
 	"log"
 	"time"
@@ -12,6 +20,8 @@ import (
 	"catalogo-backend/utils"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func main() {
@@ -35,8 +45,13 @@ func main() {
 
 	r.Use(middleware.CorsMiddleware())
 
+	docs.SwaggerInfo.BasePath = "/"
+
 	// Registrar rutas
 	routes.RegisterRoutes(r)
+
+	// Swagger documentation
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	r.Run(":8080")
 }

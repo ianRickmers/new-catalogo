@@ -1,0 +1,80 @@
+
+basePath: /
+definitions:
+  controllers.CreateUserRequest:
+    properties:
+      cc:
+        items:
+          type: integer
+        type: array
+      password:
+        type: string
+      rut:
+        type: string
+      username:
+        type: string
+    type: object
+  models.Role:
+    enum:
+    - Usuario
+    - Administrador
+    type: string
+    x-enum-varnames:
+    - USER
+    - ADMIN
+  models.User:
+    properties:
+      _id:
+        type: string
+      cc:
+        items:
+          type: string
+        type: array
+      created_at:
+        type: string
+      email:
+        type: string
+      role:
+        items:
+          $ref: '#/definitions/models.Role'
+        type: array
+      rut:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is the API documentation for the Catalogo service.
+  title: Catalogo API
+  version: "1.0"
+paths:
+  /user/:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new user after validating credentials
+      parameters:
+      - description: User info
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Register new user
+      tags:
+      - users
+swagger: "2.0"
