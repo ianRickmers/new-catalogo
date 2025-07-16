@@ -10,10 +10,16 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-// Create godoc
-// Crear un nuevo producto
-// Crea un nuevo producto con la información proporcionada
-
+// CreateProduct godoc
+// @Summary      Create product
+// @Description  Creates a new product with the provided information
+// @Tags         products
+// @Accept       json
+// @Produce      json
+// @Param        payload  body      models.Product  true  "Product info"
+// @Success      201      {object} models.Product
+// @Failure      400      {object} map[string]interface{}
+// @Router       /product/ [post]
 func CreateProduct(ctx *gin.Context) {
 	var product models.Product
 	if err := ctx.ShouldBindJSON(&product); err != nil {
@@ -29,10 +35,14 @@ func CreateProduct(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, product)
 }
 
-// GetAll godoc
-//Obtener todos los productos
-//Obtiene una lista de todos los productos
-
+// GetAllProducts godoc
+// @Summary      List products
+// @Description  Returns all products
+// @Tags         products
+// @Produce      json
+// @Success      200  {array} models.Product
+// @Failure      500  {object} map[string]interface{}
+// @Router       /product/ [get]
 func GetAllProducts(ctx *gin.Context) {
 	products, err := services.GetAllProducts()
 	if err != nil {
@@ -43,9 +53,15 @@ func GetAllProducts(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, products)
 }
 
-// GetByID godoc
-// Obtener un producto por ID
-//Obtiene un producto específico por su ID
+// GetProductByID godoc
+// @Summary      Get product by ID
+// @Description  Returns a product by its ID
+// @Tags         products
+// @Produce      json
+// @Param        id   path      string  true  "Product ID"
+// @Success      200  {object} models.Product
+// @Failure      404  {object} map[string]interface{}
+// @Router       /product/{id} [get]
 
 func GetProductByID(ctx *gin.Context) {
 	id := ctx.Param("id")
@@ -58,9 +74,17 @@ func GetProductByID(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, product)
 }
 
-// Update godoc
-// Actualizar un producto
-// Actualiza un producto existente por su ID
+// UpdateProduct godoc
+// @Summary      Update product
+// @Description  Updates an existing product by ID
+// @Tags         products
+// @Accept       json
+// @Produce      json
+// @Param        id      path      string  true  "Product ID"
+// @Param        payload body      models.Product  true  "Product info"
+// @Success      200     {object} models.Product
+// @Failure      400     {object} map[string]interface{}
+// @Router       /product/{id} [put]
 
 func UpdateProduct(ctx *gin.Context) {
 	id := ctx.Param("id")
@@ -74,13 +98,18 @@ func UpdateProduct(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	ctx.JSON(http.StatusOK, product)
 }
 
-// Delete godoc
-// Eliminar un producto
-// Elimina un producto por su ID
+// DeleteProduct godoc
+// @Summary      Delete product
+// @Description  Deletes a product by ID
+// @Tags         products
+// @Produce      json
+// @Param        id   path      string  true  "Product ID"
+// @Success      204  {string} string "No Content"
+// @Failure      500  {object} map[string]interface{}
+// @Router       /product/{id} [delete]
 
 func DeleteProduct(ctx *gin.Context) {
 	id := ctx.Param("id")
@@ -130,6 +159,16 @@ func DeleteProduct(ctx *gin.Context) {
 // 	ctx.JSON(http.StatusOK, result)
 // }
 
+// GetProductsPaginated godoc
+// @Summary      List products paginated
+// @Description  Returns paginated products
+// @Tags         products
+// @Produce      json
+// @Param        page      query     int  false  "Page number"
+// @Param        pageSize  query     int  false  "Page size"
+// @Success      200  {object} map[string]interface{}
+// @Failure      500  {object} map[string]interface{}
+// @Router       /product/paginated [get]
 func GetProductsPaginated(ctx *gin.Context) {
 	pageStr := ctx.DefaultQuery("page", "1")
 	pageSizeStr := ctx.DefaultQuery("pageSize", "50")
@@ -160,6 +199,20 @@ func GetProductsPaginated(ctx *gin.Context) {
 		"totalPages": int((total + int64(pageSize) - 1) / int64(pageSize)), // redondeo hacia arriba
 	})
 }
+
+// GetProductsFiltradasPaginated godoc
+// @Summary      List filtered products paginated
+// @Description  Returns products filtered by category, id or description
+// @Tags         products
+// @Produce      json
+// @Param        page       query     int     false  "Page number"
+// @Param        pageSize   query     int     false  "Page size"
+// @Param        categoria  query     string  false  "Categoria"
+// @Param        id_product query     string  false  "Product ID"
+// @Param        descripcion query    string  false  "Descripcion"
+// @Success      200  {object} map[string]interface{}
+// @Failure      500  {object} map[string]interface{}
+// @Router       /product/filtradas [get]
 
 func GetProductsFiltradasPaginated(ctx *gin.Context) {
 	pageStr := ctx.DefaultQuery("page", "1")

@@ -9,7 +9,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ServeArchivo sirve archivos del directorio de uploads de forma segura
+// ServeArchivo godoc
+// @Summary      Serve uploaded file
+// @Description  Serves files from the uploads directory in a safe manner
+// @Tags         files
+// @Produce      octet-stream
+// @Param        filepath  path  string  true  "File path"
+// @Success      200  {file}  string
+// @Failure      400  {object} map[string]interface{}
+// @Router       /archivos/{filepath} [get]
 func ServeArchivo(ctx *gin.Context) {
 	fileParam := ctx.Param("filepath")
 	cleanPath := filepath.Clean(fileParam)

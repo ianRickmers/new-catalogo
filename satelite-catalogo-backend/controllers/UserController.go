@@ -73,6 +73,14 @@ func CreateUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, createdUser)
 }
 
+// GetUserById godoc
+// @Summary      Get user by ID
+// @Tags         users
+// @Produce      json
+// @Param        id   path      string  true  "User ID"
+// @Success      200  {object} models.User
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/{id} [get]
 func GetUserById(ctx *gin.Context) {
 	userID := ctx.Param("id")
 	resultUser, err := services.GetUserByIdService(userID)
@@ -83,6 +91,14 @@ func GetUserById(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, resultUser)
 }
 
+// GetUserByEmail godoc
+// @Summary      Get user by email
+// @Tags         users
+// @Produce      json
+// @Param        email   path      string  true  "User email"
+// @Success      200  {object} models.User
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/email/{email} [get]
 func GetUserByEmail(ctx *gin.Context) {
 	userEmail := ctx.Param("email")
 	resultUser, err := services.GetUserByEmailService(userEmail)
@@ -93,6 +109,13 @@ func GetUserByEmail(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, resultUser)
 }
 
+// GetAllUsers godoc
+// @Summary      List users
+// @Tags         users
+// @Produce      json
+// @Success      200  {array} models.User
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/ [get]
 func GetAllUsers(ctx *gin.Context) {
 	resultUser, err := services.GetAllUsersService()
 	if err != nil {
@@ -102,6 +125,16 @@ func GetAllUsers(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, resultUser)
 }
 
+// UpdateUser godoc
+// @Summary      Update user
+// @Tags         users
+// @Accept       json
+// @Produce      json
+// @Param        email   path      string                true  "User email"
+// @Param        payload body      models.User true "User info"
+// @Success      200  {object} models.User
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/{email} [put]
 func UpdateUser(ctx *gin.Context) {
 	var updatedUser models.User
 	if err := ctx.ShouldBindJSON(&updatedUser); err != nil {
@@ -117,6 +150,14 @@ func UpdateUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, "Usuario actualizado")
 }
 
+// DeleteUser godoc
+// @Summary      Delete user
+// @Tags         users
+// @Produce      json
+// @Param        email   path      string  true  "User email"
+// @Success      200  {string} string "deleted"
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/{email} [delete]
 func DeleteUser(ctx *gin.Context) {
 	userEmail := ctx.Param("email")
 	err := services.DeleteUserService(userEmail)
@@ -147,6 +188,15 @@ func CheckEmail(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, resultUser)
 }
 
+// GetUsersByCC godoc
+// @Summary      Get users by centros de costo
+// @Tags         users
+// @Accept       json
+// @Produce      json
+// @Param        body  body  []string  true  "CC IDs"
+// @Success      200  {array} models.User
+// @Failure      400  {object} map[string]interface{}
+// @Router       /user/by-cc [post]
 func GetUsersByCC(ctx *gin.Context) {
 	var ccIDs []string
 	if err := ctx.ShouldBindJSON(&ccIDs); err != nil {

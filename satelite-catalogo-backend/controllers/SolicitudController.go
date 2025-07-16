@@ -15,6 +15,17 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+// CreateSolicitud godoc
+// @Summary      Create solicitud
+// @Description  Creates a new solicitud with optional files
+// @Tags         solicitudes
+// @Accept       multipart/form-data
+// @Produce      json
+// @Param        solicitud  formData  string  true  "Solicitud JSON"
+// @Param        archivos   formData  file    false "Attached files"
+// @Success      201  {object} map[string]interface{}
+// @Failure      400  {object} map[string]interface{}
+// @Router       /solicitud/ [post]
 func CreateSolicitud(ctx *gin.Context) {
 	// se envia como formData ya que recibe los archivos como multipart/form-data
 	jsonStr := ctx.PostForm("solicitud")
@@ -58,6 +69,15 @@ func CreateSolicitud(ctx *gin.Context) {
 	})
 }
 
+// GetSolicitud godoc
+// @Summary      Get solicitud by ID
+// @Description  Returns a solicitud by its ID
+// @Tags         solicitudes
+// @Produce      json
+// @Param        id   path      string  true  "Solicitud ID"
+// @Success      200  {object} models.Solicitud
+// @Failure      404  {object} map[string]interface{}
+// @Router       /solicitud/{id} [get]
 func GetSolicitud(ctx *gin.Context) {
 	id := ctx.Param("id")
 
@@ -84,6 +104,17 @@ func GetAllSolicitudes(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, solicitudes)
 }
 
+// UpdateSolicitud godoc
+// @Summary      Update solicitud
+// @Description  Updates an existing solicitud
+// @Tags         solicitudes
+// @Accept       json
+// @Produce      json
+// @Param        id      path      string  true  "Solicitud ID"
+// @Param        payload body      object  true  "Update data"
+// @Success      200  {object} map[string]string
+// @Failure      400  {object} map[string]interface{}
+// @Router       /solicitud/{id} [put]
 func UpdateSolicitud(ctx *gin.Context) {
 	id := ctx.Param("id")
 
@@ -116,6 +147,15 @@ func UpdateSolicitud(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "Solicitud actualizada correctamente"})
 }
 
+// DeleteSolicitud godoc
+// @Summary      Delete solicitud
+// @Description  Deletes a solicitud by ID
+// @Tags         solicitudes
+// @Produce      json
+// @Param        id   path      string  true  "Solicitud ID"
+// @Success      200  {object} map[string]string
+// @Failure      400  {object} map[string]interface{}
+// @Router       /solicitud/{id} [delete]
 func DeleteSolicitud(ctx *gin.Context) {
 	id := ctx.Param("id")
 
@@ -127,6 +167,21 @@ func DeleteSolicitud(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "Solicitud eliminada"})
 }
 
+// GetSolicitudesFiltradasPaginated godoc
+// @Summary      List solicitudes filtered paginated
+// @Description  Returns solicitudes using filters and pagination
+// @Tags         solicitudes
+// @Produce      json
+// @Param        page       query int    false "Page"
+// @Param        pageSize   query int    false "Page size"
+// @Param        state      query string false "State"
+// @Param        id         query string false "Solicitud ID"
+// @Param        fechaInicio query string false "Fecha inicio"
+// @Param        fechaFin   query string false "Fecha fin"
+// @Param        ccs        query []string false "Centros de costo"
+// @Success      200  {object} map[string]interface{}
+// @Failure      500  {object} map[string]interface{}
+// @Router       /solicitud/filtradas [get]
 func GetSolicitudesFiltradasPaginated(ctx *gin.Context) {
 	pageStr := ctx.DefaultQuery("page", "1")
 	pageSizeStr := ctx.DefaultQuery("pageSize", "50")
@@ -231,6 +286,16 @@ func GetSolicitudesFiltradasPaginated(ctx *gin.Context) {
 	})
 }
 
+// GetSolicitudesPaginated godoc
+// @Summary      List solicitudes paginated
+// @Description  Returns solicitudes paginated
+// @Tags         solicitudes
+// @Produce      json
+// @Param        page      query int false "Page"
+// @Param        pageSize  query int false "Page size"
+// @Success      200  {object} map[string]interface{}
+// @Failure      500  {object} map[string]interface{}
+// @Router       /solicitud/ [get]
 func GetSolicitudesPaginated(ctx *gin.Context) {
 	pageStr := ctx.DefaultQuery("page", "1")
 	pageSizeStr := ctx.DefaultQuery("pageSize", "50")
@@ -302,6 +367,22 @@ func GetSolicitudesByCCAndStatePaginated(ctx *gin.Context) {
 	})
 }
 
+// GetSolicitudesAprobarPaginated godoc
+// @Summary      List solicitudes to approve
+// @Description  Returns solicitudes for approval filtered by supervisor
+// @Tags         solicitudes
+// @Produce      json
+// @Param        userId    query string true  "User ID"
+// @Param        page      query int    false "Page"
+// @Param        pageSize  query int    false "Page size"
+// @Param        state     query string false "State"
+// @Param        id        query string false "Solicitud ID"
+// @Param        cc        query string false "Centro de costo"
+// @Param        fechaInicio query string false "Fecha inicio"
+// @Param        fechaFin query string false "Fecha fin"
+// @Success      200 {object} map[string]interface{}
+// @Failure      400 {object} map[string]interface{}
+// @Router       /solicitud/aprobar [get]
 func GetSolicitudesAprobarPaginated(ctx *gin.Context) {
 	userIDStr := ctx.Query("userId")
 	if userIDStr == "" {

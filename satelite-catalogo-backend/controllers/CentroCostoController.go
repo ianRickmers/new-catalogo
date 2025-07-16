@@ -8,7 +8,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// CreateCentroCosto handles the creation of a new Centro de Costo
+// CreateCentroCosto godoc
+// @Summary      Create centro de costo
+// @Description  Creates a new Centro de Costo
+// @Tags         cc
+// @Accept       json
+// @Produce      json
+// @Param        payload  body      models.CC  true  "Centro de Costo info"
+// @Success      201      {object} map[string]string
+// @Failure      400      {object} map[string]interface{}
+// @Router       /cc/ [post]
 func CreateCentroCosto(ctx *gin.Context) {
 	var cc models.CC
 	if err := ctx.ShouldBindJSON(&cc); err != nil {
@@ -25,6 +34,17 @@ func CreateCentroCosto(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{"id": id.Hex()})
 }
 
+// GetCentroCostoByID godoc
+// @Summary      Get centro de costo by ID
+// @Description  Returns a Centro de Costo by its ID
+// @Tags         cc
+// @Accept       json
+// @Produce      json
+// @Param        id   path      string  true  "Centro de Costo ID"
+// @Success      200  {object} models.CC
+// @Failure      400  {object} map[string]interface{}
+// @Failure      404  {object} map[string]interface{}
+// @Router       /cc/{id} [get]
 func GetCentroCostoByID(ctx *gin.Context) {
 	id := ctx.Param("id")
 	if id == "" {
@@ -45,6 +65,18 @@ func GetCentroCostoByID(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, cc)
 }
+
+// UpdateCentroCosto godoc
+// @Summary      Update centro de costo
+// @Description  Updates a Centro de Costo by ID
+// @Tags         cc
+// @Accept       json
+// @Produce      json
+// @Param        id      path      string                true  "Centro de Costo ID"
+// @Param        payload body      map[string]interface{} true  "Update data"
+// @Success      200     {object} map[string]string
+// @Failure      400     {object} map[string]interface{}
+// @Router       /cc/{id} [put]
 func UpdateCentroCosto(ctx *gin.Context) {
 	id := ctx.Param("id")
 	if id == "" {
@@ -66,6 +98,16 @@ func UpdateCentroCosto(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{"message": "Centro de costo actualizado correctamente"})
 }
+
+// DeleteCentroCosto godoc
+// @Summary      Delete centro de costo
+// @Description  Deletes a Centro de Costo by ID
+// @Tags         cc
+// @Produce      json
+// @Param        id   path      string  true  "Centro de Costo ID"
+// @Success      200  {object} map[string]string
+// @Failure      400  {object} map[string]interface{}
+// @Router       /cc/{id} [delete]
 func DeleteCentroCosto(ctx *gin.Context) {
 	id := ctx.Param("id")
 	if id == "" {
@@ -81,6 +123,15 @@ func DeleteCentroCosto(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{"message": "Centro de costo eliminado correctamente"})
 }
+
+// GetAllCentroCostos godoc
+// @Summary      List centros de costo
+// @Description  Returns all Centros de Costo
+// @Tags         cc
+// @Produce      json
+// @Success      200  {array}  models.CC
+// @Failure      500  {object} map[string]interface{}
+// @Router       /cc/ [get]
 func GetAllCentroCostos(ctx *gin.Context) {
 	ccList, err := services.NewCentroCostoService().GetAllCC()
 	if err != nil {
