@@ -26,6 +26,7 @@ const menuFechas = ref(false)
 const fechasSeleccionadas = ref([]) // máximo 2 fechas
 const ccMap = ref({})
 const centrosDeCostosNumerados = ref([])
+const datosListos = ref(false) 
 
 const estados = [
     { label: 'Todos', value: '' },
@@ -45,8 +46,10 @@ const centrosDeCostosDisponibles = computed(() => {
 })
 
 onMounted(async () => {
+    datosListos.value = false
     await cargarDatosCentrosCosto()
-    obtenerSolicitudesParaAprobar()
+    await obtenerSolicitudesParaAprobar()
+    datosListos.value = true
 })
 
 watch(page, obtenerSolicitudesParaAprobar)
@@ -224,6 +227,10 @@ watch(fechasSeleccionadas, (nuevas) => {
 </script>
 
 <template>
+  <div v-if="!datosListos" class="d-flex justify-center align-center" style="height: 90vh;">
+    <v-progress-circular indeterminate color="teal" size="50" />
+  </div>
+  <div v-else>
     <v-container fluid class="pa-0" style="height: 100vh;">
         <v-row no-gutters class="fill-height">
             <v-col cols="auto">
@@ -350,4 +357,5 @@ watch(fechasSeleccionadas, (nuevas) => {
             </v-col>
         </v-row>
     </v-container>
+  </div>
 </template>

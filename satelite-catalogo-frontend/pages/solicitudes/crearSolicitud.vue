@@ -116,6 +116,7 @@ function validarFormulario() {
 
 // se lleva a cabo la confirmación del envío de la solicitud
 function confirmarEnvio() {
+  if (!process.client) return
   mostrarConfirmacion.value = false
   // Solicitar a Linea que emita las líneas actuales
   lineaRef.value.emitirLineasFormulario()

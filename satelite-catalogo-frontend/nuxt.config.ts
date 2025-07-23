@@ -33,6 +33,16 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [vuetify()],
+
+    optimizeDeps: {
+      exclude: ['form-data']
+    },
+    ssr: {
+      noExternal: ['form-data'] // previene que se intente empaquetar para el cliente
+    },
+    define: {
+      'global.FormData': 'FormData'
+    }
   },
 
   runtimeConfig: {
